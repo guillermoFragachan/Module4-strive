@@ -15,8 +15,9 @@ function App() {
     <div>
       <MyNavbar name="Bookstore" />
       <MyJumbotron title='Strive book store' subtitle='History books from Strive'/>
-      <LatestRelease/>
-      <MyButton/>
+ 
+
+      <LatestRelease className="mt-4"/>
 
       <MyFooter name='Footer'/>
     </div>
