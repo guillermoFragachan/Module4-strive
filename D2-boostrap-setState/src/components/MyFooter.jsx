@@ -2,7 +2,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
 const MyFooter = (props) => (
-    <Navbar collapseOnSelect   fixed="bottom" bg="light" variant="light">
+    <Navbar collapseOnSelect  bg="light" variant="light">
                 <Navbar.Brand href="#home">{props.name}</Navbar.Brand>
 
         <Navbar.Collapse id="responsive-navbar-nav">

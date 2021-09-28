@@ -13,6 +13,7 @@ import ScifiBooks from '../data/scifi.json'
 
 
 const books = [HistoryBooks, FantasyBooks, HorrorBooks, RomanceBooks, ScifiBooks]
+const categoryNames=['History', 'Fantasy','Horror','Romance', 'SciFi']
 
 let value = 0
 class LatestRelease extends Component {
@@ -27,8 +28,8 @@ class LatestRelease extends Component {
            
             
             
-        <Container>
-             <Button  variant="primary"  onClick={()=>{
+        <Container >
+             <Button  variant="primary" className="mb-3" onClick={()=>{
                  if(value<4){value ++
                  console.log(value)
                  
@@ -38,9 +39,17 @@ class LatestRelease extends Component {
                  }
                  
                  }} >Next category</Button>
+
+
+{
+                     <h1>{categoryNames[this.state.selectedBookCategory]}</h1>
+
+                 }
+
+                 
                 
             <Row>
-
+                
                             {
                                 books[this.state.selectedBookCategory].map(book => (
                                     <Col xs={2}  key={book.asin}>
