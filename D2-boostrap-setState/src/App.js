@@ -5,6 +5,7 @@ import MyNavbar from './components/MyNavbar'
 import MyFooter from './components/MyFooter'
 import MyJumbotron from './components/Jumbotron'
 import LatestRelease from './components/LatestRelease'
+import MyButton from './components/MyButton'
 
 
 
@@ -15,6 +16,7 @@ function App() {
       <MyNavbar name="Bookstore" />
       <MyJumbotron title='Strive book store' subtitle='History books from Strive'/>
       <LatestRelease/>
+      <MyButton/>
 
       <MyFooter name='Footer'/>
     </div>
