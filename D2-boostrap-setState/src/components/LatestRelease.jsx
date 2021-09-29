@@ -10,10 +10,11 @@ import FantasyBooks from '../data/fantasy.json'
 import HorrorBooks from '../data/horror.json'
 import RomanceBooks from '../data/romance.json'
 import ScifiBooks from '../data/scifi.json'
-
+//how to bring everything in one inmport?
+//import books from "../data"
 
 const books = [HistoryBooks, FantasyBooks, HorrorBooks, RomanceBooks, ScifiBooks]
-const categoryNames=['History', 'Fantasy','Horror','Romance', 'SciFi']
+const categoryNames = ['History', 'Fantasy', 'Horror', 'Romance', 'SciFi']
 
 let value = 0
 class LatestRelease extends Component {
@@ -24,61 +25,63 @@ class LatestRelease extends Component {
 
 
     render() {
-        return(
-           
-            
-            
-        <Container >
-             <Button  variant="primary" className="mb-3" onClick={()=>{
-                 if(value<4){value ++
-                 console.log(value)
-                 
-                 this.setState({selectedBookCategory: value})}
-                 else{
-                     value = 0
-                 }
-                 
-                 }} >Next category</Button>
+        return (
 
 
-{
-                     <h1>{categoryNames[this.state.selectedBookCategory]}</h1>
 
-                 }
+            <Container >
+                <Button variant="primary" className="mb-3" onClick={() => {
+                    if (value < books.length -1) {
+                        value++
+                        console.log(value)
 
-                 
-                
-            <Row>
-                
-                            {
-                                books[this.state.selectedBookCategory].map(book => (
-                                    <Col xs={2}  key={book.asin}>
-                                        <img
-                                            className="img-fluid "
-                                            src={book.img}
-                                            alt={book.title}
-                                            
-                                        />
-                                        </Col>
-                                       
-                                   
-                                ))
-                            }
-                       
+                        this.setState({ selectedBookCategory: value })
+                    }
+                    else {
+                        value = 0
+                    }
+
+                }} >Next category</Button>
 
 
-                
-            </Row>
-        </Container>
+                {
+                    <h1>{categoryNames[this.state.selectedBookCategory]}</h1>
+
+                }
+
+
+
+                <Row>
+
+                    {
+                        books[this.state.selectedBookCategory].map(book => (
+                            <Col xs={2} key={book.asin}>
+                                <img
+                                    className="img-fluid "
+                                    src={book.img}
+                                    alt={book.title}
+
+                                />
+                            </Col>
+
+
+                        ))
+                    }
 
 
 
 
+                </Row>
+            </Container>
 
-        
-        
-    )
-    
+
+
+
+
+
+
+        )
+
     }
 }
 
