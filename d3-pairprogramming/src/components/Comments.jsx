@@ -62,8 +62,7 @@ class Comments extends React.Component{
             }
             )
             if(response.ok){
-                console.log('odadas')
-                this.setState()
+                this.fetchComments(this.props.query)
                 
                
             }else{
