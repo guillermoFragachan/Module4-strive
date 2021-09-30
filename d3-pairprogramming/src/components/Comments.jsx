@@ -1,17 +1,22 @@
 import React from "react";
 import SingleComment from "./SingleCommnet";
-//import SingleComment from "./SingleCommnet";
+import FormControl from 'react-bootstrap/FormControl'
 
 
 
-
+let obj = {
+    comment: "trying to post",
+    rate: "3",
+    elementId: "0316438960"
+}
 
 
 
 
 class Comments extends React.Component{
     state={
-        comments: []
+        comments: [],
+        addedComment : {},
 
     }
 
@@ -44,9 +49,39 @@ class Comments extends React.Component{
 
     }
 
+
+    
+    sendComment = async ( comment)=>{
+        try{
+            let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/', {
+                method: 'POST',
+                body:JSON.stringify(comment),
+                headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWM5NDRiYjUzZDAwMTViMTllY2MiLCJpYXQiOjE2MzMwMDE1NzksImV4cCI6MTYzNDIxMTE3OX0.WGqdgb0uXW7-MCUC94FOKrTEainfaSnnNBv6Le-F7uA",
+            'Content-Type': 'application/json',
+        }
+            }
+            )
+            if(response.ok){
+                console.log('odadas')
+                
+               
+            }else{
+                console.log('nope')
+            }
+
+        }
+        catch{
+            console.log('error')
+
+        }
+        
+
+    }
+
     componentDidMount = () => {
 
-
+        this.sendComment(obj)
         this.fetchComments(this.props.query)
         
     }
@@ -58,15 +93,22 @@ class Comments extends React.Component{
                 {
                     this.state.comments.length > 0 &&
                     this.state.comments.map(e=>{
-                      return <SingleComment comment={e.comment}/>
+                      return <SingleComment key={e._id} comment={e.comment}/>
                     })
                 }
                 {
-                    this.state.comments >0 &&
-                    console.log(this.state.comments[1].comment)
+                    this.state.comments.length >0 &&
+                    console.log(this.state.comments[1])
                 }
                 
-              
+                
+
+                <FormControl
+      placeholder="comment"
+      
+     
+    />
+           
 
             </>
             
@@ -74,6 +116,8 @@ class Comments extends React.Component{
     }
 
 }
+
+
 
 
 

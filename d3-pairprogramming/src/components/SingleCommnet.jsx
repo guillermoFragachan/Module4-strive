@@ -13,7 +13,14 @@ class SingleComment extends React.Component{
 
     render(){
         return(
-            <p>{this.props.comment} sda</p>
+           <>
+            <p>{this.props.comment}</p>
+           
+            
+           
+           
+           
+           </>
         )
 
     }

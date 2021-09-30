@@ -29,7 +29,7 @@ class MyCard extends Component {
   }
 
   handleToggle = () => {
-    this.setState({ selected: !this.state.selected });
+    this.setState({ selected: true });
   }
 
   render() {
