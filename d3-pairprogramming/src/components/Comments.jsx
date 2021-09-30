@@ -10,6 +10,7 @@ import React from "react";
 
 class Comments extends React.Component{
     state={
+        comments: []
 
     }
 
@@ -24,7 +25,13 @@ class Comments extends React.Component{
             }
             )
             if(response.ok){
-                console.log('yes')
+                let data = await response.json()
+
+                data.forEach(e => { this.state.comments.push(e.comment)
+                    
+                })
+                console.log(data)
+                console.log(this.state.comments)
             }else{
                 console.log('no')
             }
@@ -45,7 +52,14 @@ class Comments extends React.Component{
 
     render() {
         return(
-            <p>Comments:</p>
+            <>
+                <p>Comments:</p>
+                {
+                    
+                }
+
+            </>
+            
         )
     }
 
