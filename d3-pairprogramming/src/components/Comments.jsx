@@ -1,5 +1,6 @@
 import React from "react";
-
+import SingleComment from "./SingleCommnet";
+//import SingleComment from "./SingleCommnet";
 
 
 
@@ -26,12 +27,11 @@ class Comments extends React.Component{
             )
             if(response.ok){
                 let data = await response.json()
-
-                data.forEach(e => { this.state.comments.push(e.comment)
-                    
+                this.setState({
+                    comments: data
                 })
-                console.log(data)
-                console.log(this.state.comments)
+                
+               
             }else{
                 console.log('no')
             }
@@ -48,15 +48,25 @@ class Comments extends React.Component{
 
 
         this.fetchComments(this.props.query)
+        
     }
 
     render() {
         return(
             <>
-                <p>Comments:</p>
+              
                 {
-                    
+                    this.state.comments.length > 0 &&
+                    this.state.comments.map(e=>{
+                      return <p key={e._id}>{e.comment}</p>
+                    })
                 }
+                {
+                    this.state.comments >0 &&
+                    console.log(this.state.comments[1].comment)
+                }
+                
+              
 
             </>
             
