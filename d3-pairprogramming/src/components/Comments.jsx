@@ -58,7 +58,7 @@ class Comments extends React.Component{
                 {
                     this.state.comments.length > 0 &&
                     this.state.comments.map(e=>{
-                      return <p key={e._id}>{e.comment}</p>
+                      return <SingleComment comment={e.comment}/>
                     })
                 }
                 {
