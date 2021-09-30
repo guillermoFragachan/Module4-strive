@@ -43,7 +43,10 @@ class MyCard extends Component {
           <Card.Img variant="top" src={this.props.book.img} />
           <Card.Body>
             <Card.Title>{this.props.book.title}</Card.Title>
-      <Comments/>
+            {
+              this.state.selected &&
+              <Comments query={this.props.book.asin}/> 
+            }
           </Card.Body>
         </Card>
 

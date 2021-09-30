@@ -13,10 +13,39 @@ class Comments extends React.Component{
 
     }
 
+    fetchComments = async (query) =>{
+        try{
+            let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/'+query, {
+                method: 'GET',
+                headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWM5NDRiYjUzZDAwMTViMTllY2MiLCJpYXQiOjE2MzMwMDE1NzksImV4cCI6MTYzNDIxMTE3OX0.WGqdgb0uXW7-MCUC94FOKrTEainfaSnnNBv6Le-F7uA",
+            'Content-Type': 'application/json',
+        }
+            }
+            )
+            if(response.ok){
+                console.log('yes')
+            }else{
+                console.log('no')
+            }
+
+        }
+        catch{
+            console.log('error')
+
+        }
+
+    }
+
+    componentDidMount = () => {
+
+
+        this.fetchComments(this.props.query)
+    }
 
     render() {
         return(
-            <h3>Comments:</h3>
+            <p>Comments:</p>
         )
     }
 
