@@ -16,7 +16,12 @@ let obj = {
 class Comments extends React.Component{
     state={
         comments: [],
-        addedComment : {},
+        addedComment : {
+            comment: '',
+            rate: '3',
+            elementId: ''
+
+        },
 
     }
 
@@ -64,6 +69,7 @@ class Comments extends React.Component{
             )
             if(response.ok){
                 console.log('odadas')
+                this.setState()
                 
                
             }else{
@@ -81,7 +87,7 @@ class Comments extends React.Component{
 
     componentDidMount = () => {
 
-        this.sendComment(obj)
+        //this.sendComment()
         this.fetchComments(this.props.query)
         
     }
@@ -97,14 +103,33 @@ class Comments extends React.Component{
                     })
                 }
                 {
-                    this.state.comments.length >0 &&
-                    console.log(this.state.comments[1])
+                    // this.state.comments.length >0 &&
+                    // console.log(this.state.comments[1])
                 }
                 
                 
 
                 <FormControl
       placeholder="comment"
+      onClick={(event)=>{
+            event.target.value.length > 3 &&
+            console.log(this.state.comments)
+
+            this.setState({
+                addedComment : {
+                    comment: event.target.value,
+                    rate: '3',
+                    elementId: this.state.comments[0].elementId
+        
+                }
+
+              
+
+            })
+            this.sendComment(this.state.addedComment) 
+
+           
+      }}
       
      
     />
