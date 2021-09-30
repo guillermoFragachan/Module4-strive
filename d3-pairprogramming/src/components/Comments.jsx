@@ -4,12 +4,6 @@ import FormControl from 'react-bootstrap/FormControl'
 
 
 
-let obj = {
-    comment: "trying to post",
-    rate: "3",
-    elementId: "0316438960"
-}
-
 
 
 
@@ -99,13 +93,11 @@ class Comments extends React.Component{
                 {
                     this.state.comments.length > 0 &&
                     this.state.comments.map(e=>{
-                      return <SingleComment key={e._id} comment={e.comment}/>
+                      return <SingleComment element={e._id} key={e._id} comment={e.comment}/>
                     })
+                    
                 }
-                {
-                    // this.state.comments.length >0 &&
-                    // console.log(this.state.comments[1])
-                }
+              
                 
                 
 
