@@ -1,5 +1,7 @@
+
+
 import Card from 'react-bootstrap/Card'
-import { Component } from 'react'
+import { Component, useState } from 'react'
 
 
 
@@ -21,28 +23,31 @@ is true, the SingleBook should have some styling that reflects that state change
 
 */
 
+const MyCard = (props) => {
+  // state = {
+  //   selected: false
 
-class MyCard extends Component {
-  state = {
-    selected: false
+  // }
 
+
+  const [selected, setSelected] = useState(false)
+
+
+  const handleToggle = () => {
+    setSelected(!selected)
   }
 
-  handleToggle = () => {
-    this.setState({ selected: !this.state.selected });
-  }
-
-  render() {
+  // render() {
 
     return (
 
       
 
 
-        <Card  onClick={this.handleToggle} className={this.state.selected ? "selected" : null} key={this.props.book.asin} >
-          <Card.Img variant="top" src={this.props.book.img} />
+        <Card  onClick={handleToggle} className={selected ? "selected" : null} key={props.book.asin} >
+          <Card.Img variant="top" src={props.book.img} />
           <Card.Body>
-            <Card.Title>{this.props.book.title}</Card.Title>
+            <Card.Title>{props.book.title}</Card.Title>
 
           </Card.Body>
         </Card>
@@ -51,7 +56,7 @@ class MyCard extends Component {
 
     )
 
-  }
+  // }
 
 }
 
