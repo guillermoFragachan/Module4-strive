@@ -1,23 +1,38 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import WarningSign from './components/WarningSign';
-import MyBadge from './components/MyBadge';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import BookList from './components/BookList';
 import './components/singleBook.css'
-// import MyCard from './components/SingleBook';
-// import FantasyBooks from './data/fantasy.json'
 
 
 
 
 function App() {
   return (
-    <div>
-    <WarningSign text='whatever'/>
-    <MyBadge text='MyBadge' color='primary'/>
-    {/* <MyCard book={FantasyBooks[1]} /> */}
-    <BookList/>
-    </div>
+    <Router>
+ 
+   
+ 
+    <Switch>
+          <Route path="">
+          <BookList/>
+          </Route>
+          <Route path="/details/:asin">
+           
+          </Route>
+          <Route path="/">
+         
+          </Route>
+        </Switch>
+    
+    </Router>
   )
 }
 

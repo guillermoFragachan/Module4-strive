@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 
 
 
@@ -42,7 +42,9 @@ class MyCard extends Component {
         <Card  onClick={this.handleToggle} className={this.state.selected ? "selected" : null} key={this.props.book.asin} >
           <Card.Img variant="top" src={this.props.book.img} />
           <Card.Body>
-            <Card.Title>{this.props.book.title}</Card.Title>
+          <Link to={'details/'+ this.props.book.asin}>
+              <Card.Title>{this.props.book.title}</Card.Title>
+              </Link>
 
           </Card.Body>
         </Card>
