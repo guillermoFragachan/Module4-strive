@@ -2,12 +2,12 @@ import { Component } from "react";
 import SingleMovie from "./SingleMovie";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link
+// } from "react-router-dom";
 
 class MovieListWithSearch extends Component {
   state = {
