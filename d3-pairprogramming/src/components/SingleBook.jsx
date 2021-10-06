@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import { Component } from 'react'
-
+import Comments from './Comments'
 
 
 
@@ -29,7 +29,7 @@ class MyCard extends Component {
   }
 
   handleToggle = () => {
-    this.setState({ selected: !this.state.selected });
+    this.setState({ selected: true });
   }
 
   render() {
@@ -43,7 +43,10 @@ class MyCard extends Component {
           <Card.Img variant="top" src={this.props.book.img} />
           <Card.Body>
             <Card.Title>{this.props.book.title}</Card.Title>
-
+            {
+              this.state.selected &&
+              <Comments query={this.props.book.asin}/> 
+            }
           </Card.Body>
         </Card>
 
