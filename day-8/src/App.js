@@ -7,6 +7,12 @@ import Footer from './components/Footer'
 import MovieList from './components/MovieList'
 
 import { Container } from 'react-bootstrap'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 
@@ -16,10 +22,23 @@ function App() {
   return (
 
    <>
+    <Router>
 
 <Navbar/>
 
 <Container fluid>
+
+  
+<Switch>
+        
+          <Route path="/topics">
+         
+          </Route>
+          <Route path="/details/:imdbID">
+            <div>sdasdas</div>
+          </Route>
+  </Switch>
+
 
 <h4 class="pt-4">Search a movie</h4>
 <MovieListWithSearch/>
@@ -31,7 +50,7 @@ function App() {
 </Container>
 
 
-   
+</Router>
    
    <Footer/>
    </>

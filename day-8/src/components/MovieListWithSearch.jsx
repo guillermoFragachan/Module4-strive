@@ -2,6 +2,13 @@ import { Component } from "react";
 import SingleMovie from "./SingleMovie";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 class MovieListWithSearch extends Component {
   state = {
     query: [],
@@ -62,7 +69,13 @@ class MovieListWithSearch extends Component {
             //  console.log(this.state.movies)
 
             this.state.movies.map((movie) => (
-              <SingleMovie img={movie.Poster} id={movie.imdbID} />
+              
+                 <SingleMovie img={movie.Poster} id={movie.imdbID} />
+
+
+            
+              
+             
             ))
           ) : (
             <p></p>
