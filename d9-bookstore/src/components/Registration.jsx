@@ -41,7 +41,7 @@ const Registration = (props) => {
         <Row>
           <Col xs={1} md={2}></Col>
           <Col xs={10} md={8} className="d-flex flex-column align-items-center">
-            <h1 className="text-center mt-4">Registration Form</h1>
+            <h1 className="text-center mt-4">create account</h1>
             <Form
               className="w-75 d-flex flex-column align-items-center"
               onSubmit={submitRegistration}
