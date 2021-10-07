@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import { Component } from 'react'
-import Comments from './Comments'
+
 
 
 
