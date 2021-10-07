@@ -2,6 +2,7 @@ import { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Comments from "./Comments";
 
 import MyCard from "./SingleBook";
 
@@ -14,6 +15,7 @@ class BookList extends Component {
   state = {
     title: "",
     filteredBooks: FantasyBooks,
+    selectedBook: null
   };
 
   filtreBooksList = (query) => {
@@ -24,9 +26,14 @@ class BookList extends Component {
     this.setState({ filteredBooks });
   };
 
+
+  
+
   render() {
     return (
       <Container>
+        <Row>
+          <Col md={8}>
         <Row>
           <FormControl
             placeholder="Book Title"
@@ -48,9 +55,24 @@ class BookList extends Component {
 
           {this.state.filteredBooks.map((book) => (
             <Col key={book.asin} xs={2}>
-              <MyCard book={book} />
+              <MyCard changeSelectedBook={(asin)=>{
+                this.setState({
+                  selectedBook:asin
+                })
+              }} book={book} />
             </Col>
           ))} 
+        </Row>
+
+        </Col>
+        <Col md={4}>
+          
+       
+              <Comments query={this.state.selectedBook}/> 
+           
+          
+          </Col>
+
         </Row>
       </Container>
     );

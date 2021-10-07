@@ -16,6 +16,7 @@ class Comments extends React.Component{
             elementId: ''
 
         },
+        isLoading: false
 
     }
 
@@ -32,19 +33,22 @@ class Comments extends React.Component{
             if(response.ok){
                 let data = await response.json()
                 this.setState({
-                    comments: data
+                    comments: data,
+                    isLoading: false,
+                    isError: false
                 })
                 
                
             }else{
-                console.log('no')
-            }
+                console.log("error");
+          this.setState({ isLoading: false, isError: true });
+        }
 
         }
-        catch{
-            console.log('error')
-
-        }
+        catch (error) {
+            console.log(error);
+            this.setState({ isLoading: false, isError: true });
+          }
 
     }
 
@@ -84,6 +88,18 @@ class Comments extends React.Component{
         this.fetchComments(this.props.query)
         
     }
+    
+
+    componentDidUpdate = async (prevProps) => {
+        if (prevProps.query !== this.props.query) {
+            console.log(this.state)
+          this.setState({
+            isLoading: false
+          });
+         this.fetchComments(this.props.query)
+      }
+    }
+
 
     render() {
         return(

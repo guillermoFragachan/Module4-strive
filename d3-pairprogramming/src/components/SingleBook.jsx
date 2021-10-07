@@ -23,14 +23,8 @@ is true, the SingleBook should have some styling that reflects that state change
 
 
 class MyCard extends Component {
-  state = {
-    selected: false
 
-  }
-
-  handleToggle = () => {
-    this.setState({ selected: true });
-  }
+ 
 
   render() {
 
@@ -38,17 +32,21 @@ class MyCard extends Component {
 
       
 
-
-        <Card  onClick={this.handleToggle} className={this.state.selected ? "selected" : null} key={this.props.book.asin} >
+      <>
+      <Card
+          // onClick={() => this.setState({ selected: !this.state.selected })}
+          onClick={() => this.props.changeSelectedBook(this.props.book.asin)}
+          
+      >
           <Card.Img variant="top" src={this.props.book.img} />
           <Card.Body>
-            <Card.Title>{this.props.book.title}</Card.Title>
-            {
-              this.state.selected &&
-              <Comments query={this.props.book.asin}/> 
-            }
+              <Card.Title style={{ color: 'black' }}>{this.props.book.title}</Card.Title>
           </Card.Body>
-        </Card>
+      </Card>
+      {/* {
+          this.state.selected && <CommentArea asin={this.props.book.asin} />
+      } */}
+  </>
 
 
 
