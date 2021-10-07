@@ -1,256 +1,140 @@
-import { Component } from "react";
-import { Container, Col, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { withRouter } from "react-router";
+import { BrowserRouter, Route } from "react-router-dom";
 
-class Registration extends Component {
-  state = {
-    fields: {
-      name: "",
-      surname: "",
-      email: "",
-      password: "",
-      year: "",
-      streetAddress: "",
-      city: "",
-      postalCode: "",
-      creditCard: "",
-    },
-    errors: {},
+const Registration = (props) => {
+  const [form, setForm] = useState({
+    name: null,
+    surname: null,
+    email: null,
+    password: "",
+    confirmation: '',
+  });
+  const [passOk, setPassOk] = useState(false);
+
+  const handleInput = (key, value) => {
+    setForm({
+      ...form,
+      [key]: value,
+    });
   };
 
-  handleValidation = () => {
-    let fields = this.state.fields;
-    let errors = {};
-    let formIsValid = true;
-    console.log(fields);
-
-    //Name
-
-    if (fields.name.length < 2) {
-      formIsValid = false;
-      errors.name = alert("not less than 2 characters name");
-    }
-    //Surname
-
-    if (fields.surname.length < 3) {
-      formIsValid = false;
-      errors.surname = "not less than 3 characters surname";
-    }
-
-    //Email
-    if (fields.postalCode.length === 5 || fields.postalCode.length === 6) {
-      formIsValid = false;
-      errors.postalCode = "invalid postal code";
-    }
-
-    this.setState({ errors: errors });
-    return formIsValid;
-  };
-
-  formSubmit = (e) => {
+  const submitRegistration = (e) => {
     e.preventDefault();
-    console.log("form to be submitted");
-
-    if (this.handleValidation()) {
-      alert("You have registered successfully");
-      this.setState({
-        fields: {
-          name: "",
-          surname: "",
-          email: "",
-          password: "",
-          year: "",
-          streetAddress: "",
-          city: "",
-          postalCode: "",
-          creditCard: "",
-        },
-      });
+    if (form.password.length > 8) {
+      const hasNumbers = (t) => {
+        var regex = /\d/g;
+        return regex.test(t);
+      };
+      if (hasNumbers(form.password)) {
+        setPassOk(true);
+      }
     } else {
-      alert("Form has errors.");
+      alert("Check you password");
     }
   };
 
-  handleChange(field, e) {
-    let fields = this.state.fields;
-    fields[field] = e.target.value;
-    this.setState({ fields });
-  }
-
-  //   componentDidMount = async () => {};
-
-  render() {
-    return (
-      <>
-        <Container className="px-5 pt-5">
-          <Form onSubmit={this.formSubmit}>
-            <Form.Group hasValidation controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                required
-                onChange={(e) =>
-                  this.setState({
-                    fields: {
-                      ...this.state.fields,
-                      name: e.target.value,
-                    },
-                  })
-                }
-                type="text"
-                placeholder="Enter Name"
-              />
-            </Form.Group>
-            <Form.Group hasValidation controlId="formBasicSurname">
-              <Form.Label>Surname</Form.Label>S
-              <Form.Control
-                required
-                type="text"
-                placeholder="Enter Surname"
-                onChange={(e) =>
-                  this.setState({
-                    fields: {
-                      ...this.state.fields,
-                      surname: e.target.value,
-                    },
-                  })
-                }
-              />
-            </Form.Group>
-
-            <Form.Group hasValidation controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                required
-                type="email"
-                placeholder="Enter email"
-                onChange={(e) =>
-                  this.setState({
-                    fields: {
-                      ...this.state.fields,
-                      email: e.target.value,
-                    },
-                  })
-                }
-              />
-            </Form.Group>
-            <Form.Row>
-              <Form.Group hasValidation as={Col} controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
+  return (
+    <BrowserRouter>
+      <Container className={passOk && "d-none"}>
+        <Row>
+          <Col xs={1} md={2}></Col>
+          <Col xs={10} md={8} className="d-flex flex-column align-items-center">
+            <h1 className="text-center mt-4">Registration Form</h1>
+            <Form
+              className="w-75 d-flex flex-column align-items-center"
+              onSubmit={submitRegistration}
+            >
+              <Form.Group className="w-100">
+                <Form.Label>Name</Form.Label>
                 <Form.Control
-                  required
+                  type="text"
+                  placeholder="Enter name here..."
+                  value={form.name}
+                  onChange={(e) => {
+                    handleInput("name", e.target.value);
+                  }}
+                />
+              </Form.Group>
+              <Form.Group className="w-100">
+                <Form.Label>Surname</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={form.surname}
+                  placeholder="Enter surname here..."
+                  onChange={(e) => {
+                    handleInput("surname", e.target.value);
+                  }}
+                />
+              </Form.Group>
+              <Form.Group className="w-100" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email here..."
+                  value={form.email}
+                  onChange={(e) => {
+                    handleInput("email", e.target.value);
+                  }}
+                />
+              </Form.Group>
+              <Form.Group className="w-100">
+                <Form.Label htmlFor="inputPassword5">Password</Form.Label>
+                <Form.Control
                   type="password"
-                  placeholder="Password"
-                  onChange={(e) =>
-                    this.setState({
-                      fields: {
-                        ...this.state.fields,
-                        password: e.target.value,
-                      },
-                    })
-                  }
+                  id="inputPassword5"
+                  value={form.password}
+                  placeholder="Enter password here..."
+                  aria-describedby="passwordHelpBlock"
+                  onChange={(e) => {
+                    handleInput("password", e.target.value);
+                  }}
                 />
-                <Form.Text id="passwordHelpBlock" muted>
-                  Your password must contain at least 8 characters, a digit, a
-                  letter.
-                </Form.Text>
+    
               </Form.Group>
-              <Form.Group hasValidation as={Col} controlId="formGridYear">
-                <Form.Label>Year</Form.Label>
+              <Form.Group className="w-100">
+                <Form.Label htmlFor="inputpass">Confirm Password2</Form.Label>
                 <Form.Control
-                  required
-                  type="text"
-                  placeholder="2001"
-                  onChange={(e) =>
-                    this.setState({
-                      fields: {
-                        ...this.state.fields,
-                        year: e.target.value,
-                      },
-                    })
-                  }
+                  type="password"
+                  id="inputpass"
+                  value={form.confirmation}
+                  
+                  
+                  onChange={(e) => {
+                    handleInput("confirmation", e.target.value);
+                  }}
                 />
+            
               </Form.Group>
-            </Form.Row>
-
-            <Form.Group hasValidation controlId="formGridAddress1">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                placeholder="1234 Main St"
-                onChange={(e) =>
-                  this.setState({
-                    fields: {
-                      ...this.state.fields,
-                      address: e.target.value,
-                    },
-                  })
+              <Button
+                type="submit"
+                className="w-50 mt-3"
+                disabled={
+                  (!form.name, !form.surname, !form.email, !form.password, form.confirmation!==form.password)
                 }
-              />
-            </Form.Group>
-
-            <Form.Row>
-              <Form.Group hasValidation as={Col} controlId="formGridCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  onChange={(e) =>
-                    this.setState({
-                      fields: {
-                        ...this.state.fields,
-                        city: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </Form.Group>
-
-              <Form.Group hasValidation as={Col} controlId="formGridZip">
-                <Form.Label>Zip</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  onChange={(e) =>
-                    this.setState({
-                      fields: {
-                        ...this.state.fields,
-                        zip: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </Form.Group>
-              <Form.Group hasValidation as={Col} controlId="formCreditCard">
-                <Form.Label>Zip</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  onChange={(e) =>
-                    this.setState({
-                      fields: {
-                        ...this.state.fields,
-                        zip: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Group hasValidation id="formGridCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-
-            {/* <CreditCard /> */}
-          </Form>
-        </Container>
-      </>
-    );
-  }
-}
-
-export default Registration;
+              >
+                Sign-up
+              </Button>
+            </Form>
+          </Col>
+          <Col xs={1} md={2}></Col>
+        </Row>
+      </Container>
+      <Container
+        className={
+          passOk === false ? "d-none" : "d-flex flex-column align-items-center"
+        }
+      >
+        <hr />
+        <h1>Your account</h1>
+        <hr />
+        <p>Your name: {form.name} </p>
+        <p>Your surname: {form.surname}</p>
+        <p>Your email: {form.email}</p>
+        <p>Your password: {form.password}</p>
+      </Container>
+    </BrowserRouter>
+  );
+};
+export default withRouter(Registration);
