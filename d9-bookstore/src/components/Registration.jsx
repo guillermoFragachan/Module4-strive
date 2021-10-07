@@ -50,7 +50,6 @@ const Registration = (props) => {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter name here..."
                   value={form.name}
                   onChange={(e) => {
                     handleInput("name", e.target.value);
@@ -62,7 +61,7 @@ const Registration = (props) => {
                 <Form.Control
                   type="text"
                   value={form.surname}
-                  placeholder="Enter surname here..."
+               
                   onChange={(e) => {
                     handleInput("surname", e.target.value);
                   }}
@@ -72,7 +71,7 @@ const Registration = (props) => {
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Enter email here..."
+               
                   value={form.email}
                   onChange={(e) => {
                     handleInput("email", e.target.value);
@@ -83,10 +82,9 @@ const Registration = (props) => {
                 <Form.Label htmlFor="inputPassword5">Password</Form.Label>
                 <Form.Control
                   type="password"
-                  id="inputPassword5"
+              
                   value={form.password}
-                  placeholder="Enter password here..."
-                  aria-describedby="passwordHelpBlock"
+        
                   onChange={(e) => {
                     handleInput("password", e.target.value);
                   }}
@@ -97,7 +95,7 @@ const Registration = (props) => {
                 <Form.Label htmlFor="inputpass">Confirm Password2</Form.Label>
                 <Form.Control
                   type="password"
-                  id="inputpass"
+              
                   value={form.confirmation}
                   
                   
