@@ -4,6 +4,7 @@ import BookList from './components/BookList';
 import './components/singleBook.css'
 import { Container, Row } from 'react-bootstrap';
 import Registration from './components/Registration';
+import RegistrationButton from './components/RegistrationButton';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
@@ -12,7 +13,7 @@ function App() {
   return (
     <Router>
     <Container className='mt-5' fluid>
-      
+      <RegistrationButton/>
     <Row>
       
   
